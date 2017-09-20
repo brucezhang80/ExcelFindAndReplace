@@ -40,23 +40,28 @@ namespace ExcelFindAndReplace {
                     ListViewItem item = new ListViewItem(new[] { file });
                     listView1.Items.Add(item);
                 }
+                toolStripStatusLabel1.Text = "Files added: " + openFileDialog1.FileNames.Length.ToString();
             }
         }
 
         //Press Del to remove selected items
         private void listView1_KeyDown(object sender, KeyEventArgs e) {
             if (Keys.Delete == e.KeyCode) {
+                statusLabel_Del();
                 foreach (ListViewItem item in listView1.SelectedItems) {
                     listView1.Items.Remove(item);
-                }
+                }  
             }
         }
 
         //Press Remove button in toolstrip to remove items
         private void toolStripLabel2_Click(object sender, EventArgs e) {
+            statusLabel_Del();
             foreach (ListViewItem item in listView1.SelectedItems) {
                 listView1.Items.Remove(item);
             }
         }
+
+        public void statusLabel_Del() => toolStripStatusLabel1.Text = "Files removed: " + listView1.SelectedItems.Count.ToString();
     }
 }
