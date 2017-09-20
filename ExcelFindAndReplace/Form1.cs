@@ -24,6 +24,8 @@ namespace ExcelFindAndReplace {
             comboBox3.SelectedIndex = 0;
         }
 
+        //Preparation
+
         private void toolStripButton1_Click(object sender, EventArgs e) {
             AddFiles();
         }
@@ -66,5 +68,47 @@ namespace ExcelFindAndReplace {
         }
 
         public void statusLabel_Del() => toolStripStatusLabel1.Text = "Files removed: " + listView1.SelectedItems.Count.ToString();
+
+        //Execution
+
+        string findText, replaceText;
+        Excel.XlLookAt lookat;
+        Excel.XlSearchOrder searchOrder;
+        bool matchCase;
+
+        public void SetVariables() {
+            findText = textBox1.Text;
+            replaceText = textBox2.Text;
+            lookat = (comboBox1.SelectedIndex == 0) ? Excel.XlLookAt.xlPart : Excel.XlLookAt.xlWhole;
+            searchOrder = (comboBox2.SelectedIndex == 0) ? Excel.XlSearchOrder.xlByRows : Excel.XlSearchOrder.xlByColumns;
+            matchCase = checkBox1.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            SetVariables();
+            foreach (ListViewItem file in listView1.Items) {
+                FindAndReplace(file.Text);
+            }
+        }
+
+        public void FindAndReplace(string file) {
+            Excel.Application excelApp = new Excel.Application() { Visible = false };
+            Excel.Workbook wb = excelApp.Workbooks.Open(file, ReadOnly: false);
+            Excel.Worksheet ws = (Excel.Worksheet)wb.ActiveSheet;
+            Excel.Range rnge = ws.UsedRange;
+
+            bool success = rnge.Replace(
+                What: findText,
+                Replacement: replaceText,
+                LookAt: lookat, 
+                SearchOrder: searchOrder,
+                MatchCase: matchCase
+                );
+
+            wb.Save();
+            excelApp.Quit();
+        }
+
+
     }
 }
