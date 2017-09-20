@@ -18,17 +18,13 @@ namespace ExcelFindAndReplace {
         }
 
         public void InitStuff() {
-            openFileDialog1.Filter = "Excel XLSX (*.xlsx)|*.xlsx|" + "Excel All (*.xlsx;*.xls)|*.xlsx;*.xls";
+            openFileDialog1.Filter = "Excel XLSX (*.xlsx)|*.xlsx|" + "Excel All (*.xlsx;*.xls;*.xlsm)|*.xlsx;*.xls;*.xlsm";
             comboBox1.SelectedIndex = 1;
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
         }
 
         //Preparation
-
-        private void toolStripButton1_Click(object sender, EventArgs e) {
-            AddFiles();
-        }
 
         private void toolStripLabel1_Click(object sender, EventArgs e) {
             AddFiles();
@@ -71,7 +67,8 @@ namespace ExcelFindAndReplace {
 
         //Execution
 
-        string findText, replaceText;
+        string findText = "";
+        string replaceText = "";
         Excel.XlLookAt lookat;
         Excel.XlSearchOrder searchOrder;
         bool matchCase;
@@ -86,7 +83,7 @@ namespace ExcelFindAndReplace {
 
         private void button1_Click(object sender, EventArgs e) {
             SetVariables();
-            if (findText == "" || replaceText == "" || listView1.Items.Count == 0) 
+            if (findText == "" || listView1.Items.Count == 0) 
                 toolStripStatusLabel1.Text = "Error: No text entered or no files added.";
             else {
                 foreach (ListViewItem file in listView1.Items)
@@ -99,6 +96,12 @@ namespace ExcelFindAndReplace {
 
             Excel.Application excelApp = new Excel.Application() { Visible = false };
             Excel.Workbook wb = excelApp.Workbooks.Open(file, ReadOnly: false);
+
+            //Need to loop through worksheets and unprotect them all
+            foreach (Excel.Worksheet sheet in wb.Worksheets) {
+                sheet.Unprotect();
+            }
+
             Excel.Worksheet ws = (Excel.Worksheet)wb.ActiveSheet;
             Excel.Range rnge = ws.UsedRange;
 
@@ -109,6 +112,10 @@ namespace ExcelFindAndReplace {
                 SearchOrder: searchOrder,
                 MatchCase: matchCase
                 );
+
+            foreach (Excel.Worksheet sheet in wb.Worksheets) {
+                //sheet.Protect();
+            }
 
             toolStripStatusLabel1.Text = "Finished editing " + file;
             wb.Save();

@@ -1,0 +1,10 @@
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\bin\Debug\ExcelFindAndReplace.exe.config
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\bin\Debug\ExcelFindAndReplace.exe
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\bin\Debug\ExcelFindAndReplace.pdb
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\obj\Debug\ExcelFindAndReplace.csprojResolveAssemblyReference.cache
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\obj\Debug\ExcelFindAndReplace.Form1.resources
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\obj\Debug\ExcelFindAndReplace.Properties.Resources.resources
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\obj\Debug\ExcelFindAndReplace.csproj.GenerateResource.Cache
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\obj\Debug\ExcelFindAndReplace.csproj.CoreCompileInputs.cache
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\obj\Debug\ExcelFindAndReplace.exe
+C:\Users\Evie\Documents\Visual Studio 2017\Projects\ExcelFindAndReplace\ExcelFindAndReplace\obj\Debug\ExcelFindAndReplace.pdb
