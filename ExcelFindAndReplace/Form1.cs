@@ -19,6 +19,9 @@ namespace ExcelFindAndReplace {
 
         public void InitStuff() {
             openFileDialog1.Filter = "Excel XLSX (*.xlsx)|*.xlsx|" + "Excel All (*.xlsx;*.xls)|*.xlsx;*.xls";
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e) {
