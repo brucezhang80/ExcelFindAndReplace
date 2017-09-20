@@ -36,7 +36,8 @@ namespace ExcelFindAndReplace {
         public void AddFiles() {
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
                 foreach (string file in openFileDialog1.FileNames) {
-                    textBox1.AppendText(file + "\n");
+                    ListViewItem item = new ListViewItem(new[] { file });
+                    listView1.Items.Add(item);
                 }
             }
         }
