@@ -51,5 +51,12 @@ namespace ExcelFindAndReplace {
                 }
             }
         }
+
+        //Press Remove button in toolstrip to remove items
+        private void toolStripLabel2_Click(object sender, EventArgs e) {
+            foreach (ListViewItem item in listView1.SelectedItems) {
+                listView1.Items.Remove(item);
+            }
+        }
     }
 }
