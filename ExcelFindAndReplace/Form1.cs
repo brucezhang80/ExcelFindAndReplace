@@ -33,11 +33,21 @@ namespace ExcelFindAndReplace {
             AddFiles();
         }
 
+        //Add files to ListView
         public void AddFiles() {
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
                 foreach (string file in openFileDialog1.FileNames) {
                     ListViewItem item = new ListViewItem(new[] { file });
                     listView1.Items.Add(item);
+                }
+            }
+        }
+
+        //Press Del to remove selected items
+        private void listView1_KeyDown(object sender, KeyEventArgs e) {
+            if (Keys.Delete == e.KeyCode) {
+                foreach (ListViewItem item in listView1.SelectedItems) {
+                    listView1.Items.Remove(item);
                 }
             }
         }
