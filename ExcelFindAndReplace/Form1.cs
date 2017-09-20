@@ -19,7 +19,7 @@ namespace ExcelFindAndReplace {
 
         public void InitStuff() {
             openFileDialog1.Filter = "Excel XLSX (*.xlsx)|*.xlsx|" + "Excel All (*.xlsx;*.xls)|*.xlsx;*.xls";
-            comboBox1.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 1;
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
         }
@@ -86,12 +86,17 @@ namespace ExcelFindAndReplace {
 
         private void button1_Click(object sender, EventArgs e) {
             SetVariables();
-            foreach (ListViewItem file in listView1.Items) {
-                FindAndReplace(file.Text);
+            if (findText == "" || replaceText == "" || listView1.Items.Count == 0) 
+                toolStripStatusLabel1.Text = "Error: No text entered or no files added.";
+            else {
+                foreach (ListViewItem file in listView1.Items)
+                    FindAndReplace(file.Text);
             }
         }
 
         public void FindAndReplace(string file) {
+            toolStripStatusLabel1.Text = "Editing " + file;
+
             Excel.Application excelApp = new Excel.Application() { Visible = false };
             Excel.Workbook wb = excelApp.Workbooks.Open(file, ReadOnly: false);
             Excel.Worksheet ws = (Excel.Worksheet)wb.ActiveSheet;
@@ -105,10 +110,9 @@ namespace ExcelFindAndReplace {
                 MatchCase: matchCase
                 );
 
+            toolStripStatusLabel1.Text = "Finished editing " + file;
             wb.Save();
             excelApp.Quit();
         }
-
-
     }
 }
